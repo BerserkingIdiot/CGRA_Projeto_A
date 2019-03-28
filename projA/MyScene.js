@@ -23,6 +23,42 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
 
         //Objects connected to MyInterface
+
+
+
+        //------- Cube stuff
+
+        this.voxelHill = new MyVoxelHill(this, 8);
+
+        this.texture5 = new CGFtexture(this, 'images/mineSide.png');
+        this.texture6 = new CGFtexture(this, 'images/mineTop.png');
+        this.texture7 = new CGFtexture(this, 'images/mineBottom.png');
+ 
+         
+ 
+        // Mine side
+        this.mine_side = new CGFappearance(this);
+        this.mine_side.setAmbient(0.1, 0.1, 0.1, 1);
+        this.mine_side.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.mine_side.setSpecular(0.1, 0.1, 0.1, 1);
+        this.mine_side.setShininess(10.0);
+        this.mine_side.setTexture(this.texture5);
+ 
+        // Mine top
+        this.mine_top = new CGFappearance(this);
+        this.mine_top.setAmbient(0.1, 0.1, 0.1, 1);
+        this.mine_top.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.mine_top.setSpecular(0.1, 0.1, 0.1, 1);
+        this.mine_top.setShininess(10.0);
+        this.mine_top.setTexture(this.texture6);
+ 
+        // Mine bottom
+        this.mine_bottom = new CGFappearance(this);
+        this.mine_bottom.setAmbient(0.1, 0.1, 0.1, 1);
+        this.mine_bottom.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.mine_bottom.setSpecular(0.1, 0.1, 0.1, 1);
+        this.mine_bottom.setShininess(10.0);
+        this.mine_bottom.setTexture(this.texture7);
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -58,6 +94,9 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
+        this.pushMatrix();
+        this.voxelHill.display();
+        this.popMatrix();
 
         // ---- END Primitive drawing section
     }
