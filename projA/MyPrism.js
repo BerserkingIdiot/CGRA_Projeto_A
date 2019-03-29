@@ -2,10 +2,10 @@ class MyPrism extends CGFobject {
     constructor(scene, slices) {
         super(scene);
         this.slices = slices;
-        this.initObjects(scene);
+        this.initBuffers(scene);
     }
 
-    initObjects(scene) { 
+    initBuffers(scene) { 
         this.vertices = [];
         this.indices = [];
         this.normals = [];
@@ -30,12 +30,12 @@ class MyPrism extends CGFobject {
 
             else {
                 this.indices.push(
-                    this.indices[6*(i)]+2,
-                    this.indices[6*(i)+1]+2,
-                    this.indices[6*(i)+2]+2,
-                    this.indices[6*(i)+3]+2,
-                    this.indices[6*(i)+4]+2,
-                    this.indices[6*(i)+5]+2
+                    this.indices[6*(i-2)]+2,
+                    this.indices[6*(i-2)+1]+2,
+                    this.indices[6*(i-2)+2]+2,
+                    this.indices[6*(i-2)+3]+2,
+                    this.indices[6*(i-2)+4]+2,
+                    this.indices[6*(i-2)+5]+2
                 )
             }
             ang += alphaAng;
