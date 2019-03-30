@@ -67,10 +67,38 @@ class MyPrism extends CGFobject {
         }
 
         // Duplicate vertex array
-        //this.vertices = [...this.vertices];
+        this.vertices = [...this.vertices];
 
         // Duplicate indices array
-        //this.indices = [...this.indices];
+        this.indices = [...this.indices];
+
+        for (let i = 0; i < this.slices*2; i++) {
+            let sa = Math.sin(ang);
+            let saa = Math.sin(ang + alphaAng);
+            let ca = Math.cos(ang);
+            let caa = Math.cos(ang + alphaAng);
+
+            let normal= [
+                saa,
+                0,
+                caa,
+            ];
+
+            // normalization
+            let nsize=Math.sqrt(
+                normal[0]*normal[0]+
+                normal[1]*normal[1]+
+                normal[2]*normal[2]
+                );
+            normal[0]/=nsize;
+            normal[1]/=nsize;
+            normal[2]/=nsize;
+
+            // push normal once for each vertex of this triangle
+            this.normals.push(normal);
+            this.normals.push(normal);
+            this.normals.push(normal);
+        }
 
         this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
