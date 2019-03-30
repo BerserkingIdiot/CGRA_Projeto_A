@@ -25,14 +25,14 @@ class MyPrism extends CGFobject {
 
             // Normals
             // triangle normal computed by cross product of two edges
-            var normal= [
-                saa-sa,
-                ca*saa-sa*caa,
-                caa-ca
+            let normal= [
+                saa-sa, // meter -2*ang
+                0,
+                caa-ca,
             ];
 
             // normalization
-            var nsize=Math.sqrt(
+            let nsize=Math.sqrt(
                 normal[0]*normal[0]+
                 normal[1]*normal[1]+
                 normal[2]*normal[2]
