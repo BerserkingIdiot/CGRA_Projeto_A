@@ -22,6 +22,7 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
+        this.prism = new MyPrism(this, 8);
 
         //Objects connected to MyInterface
 
@@ -95,9 +96,13 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
+
         this.pushMatrix();
         this.voxelHill.display();
         this.popMatrix();
+
+        this.prism.display();
+
 
         // ---- END Primitive drawing section
     }
