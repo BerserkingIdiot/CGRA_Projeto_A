@@ -24,6 +24,7 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.prism = new MyPrism(this, 8);
         this.cylinder = new MyCylinder(this, 8);
+        this.tree = new MyTree(this);
 
         //Objects connected to MyInterface
 
@@ -91,7 +92,7 @@ class MyScene extends CGFscene {
 
         // Draw axis
         this.axis.display();
-        this.cylinder.display();
+        //this.cylinder.display();
 
         //Apply default appearance
         this.setDefaultAppearance();
@@ -101,6 +102,7 @@ class MyScene extends CGFscene {
 
         this.pushMatrix();
         //this.voxelHill.display();
+        this.tree.display();
         this.popMatrix();
 
         //this.prism.display();
