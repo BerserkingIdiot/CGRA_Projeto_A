@@ -24,7 +24,7 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.prism = new MyPrism(this, 8);
         this.cylinder = new MyCylinder(this, 8);
-        this.tree = new MyTree(this);
+        this.tree = new MyTree(this, 2, 0.8, 3, 1.5);
 
         //Objects connected to MyInterface
 
