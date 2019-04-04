@@ -11,6 +11,8 @@ serialInclude(['../lib/CGF.js','MyScene.js', 'MyInterface.js', 'MyDiamond.js',
                'MyVoxelHill.js',
                'MyQuad.js',
                'MyCylinder.js',
+               'MyTree.js',
+               'MyCone.js',
 
 main=function()
 {
