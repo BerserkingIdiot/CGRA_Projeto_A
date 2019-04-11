@@ -33,19 +33,21 @@ serialInclude = function (a) {
 };
 serialInclude.l = new Array();
 
-
-serialInclude(['../lib/CGF.js', 'MyScene.js', 'MyInterface.js', 'MyDiamond.js',
-    'MyTriangle.js', 'MyPrism.js', 'MyEquilateralTriangle.js',
-    'MyScene.js',
-    'MyInterface.js',
-    'MyUnitCubeQuad.js',
-    'MyVoxelHill.js',
-    'MyQuad.js',
-    'MyCylinder.js',
-    'MyTree.js',
-    'MyCone.js',
-    'MyHouse.js',
-    'MyPyramid.js',
+serialInclude(['../lib/CGF.js','MyScene.js', 'MyInterface.js', 'MyDiamond.js',
+'MyTriangle.js', 'MyPrism.js', 'MyEquilateralTriangle.js',
+               'MyScene.js', 
+               'MyInterface.js',
+               'MyUnitCubeQuad.js',
+               'MyVoxelHill.js',
+               'MyQuad.js',
+               'MyCylinder.js',
+               'MyTree.js',
+               'MyCone.js',
+               'MyHouse.js',
+               'MyPyramid.js',
+               'MySkyBoxCube.js',
+               'MyRoundQuad.js',
+               'MyTreeRowPatch.js',
 
     main = function () {
         var app = new CGFapplication(document.body);
