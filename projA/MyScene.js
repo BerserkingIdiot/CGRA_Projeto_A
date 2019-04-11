@@ -16,7 +16,7 @@ class MyScene extends CGFscene {
 
         this.gl.clearDepth(100.0);
         this.gl.enable(this.gl.DEPTH_TEST);
-        this.gl.enable(this.gl.CULL_FACE);
+        //this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
         this.enableTextures(true);
 
@@ -24,10 +24,11 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.prism = new MyPrism(this, 8);
         this.cylinder = new MyCylinder(this, 8);
+        this.cube = new MyUnitCubeQuad(this);
+        this.house = new MyHouse(this);
         this.skybox = new MySkyBoxCube(this);
         this.tree = new MyTree(this, 2, 0.8, 3, 1.5);
         this.treeRowPatch = new MyTreeRowPatch(this);
-
 
         //Objects connected to MyInterface
 
@@ -179,8 +180,6 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
-
-
         this.pushMatrix();
 
         this.skybox.display();
@@ -192,7 +191,9 @@ class MyScene extends CGFscene {
         this.treeRowPatch.display();
 
         //this.prism.display();
-
+        //this.voxelHill.display();
+        //this.tree.display();
+        this.house.display();
 
         // ---- END Primitive drawing section
     }
