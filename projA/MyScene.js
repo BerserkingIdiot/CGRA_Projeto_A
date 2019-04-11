@@ -24,9 +24,10 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.prism = new MyPrism(this, 8);
         this.cylinder = new MyCylinder(this, 8);
-        this.tree = new MyTree(this);
-        this.pyramid = new MyPyramid(this, 6, 1);
         this.skybox = new MySkyBoxCube(this);
+        this.tree = new MyTree(this, 2, 0.8, 3, 1.5);
+        this.treeRowPatch = new MyTreeRowPatch(this);
+
 
         //Objects connected to MyInterface
 
@@ -182,13 +183,15 @@ class MyScene extends CGFscene {
 
         this.pushMatrix();
 
-        //this.mine_side.apply();
-        //this.tree.display();
-        
         this.skybox.display();
 
+        //this.voxelHill.display();
+        //this.tree.display();
         this.popMatrix();
 
+        this.treeRowPatch.display();
+
+        //this.prism.display();
 
 
         // ---- END Primitive drawing section
