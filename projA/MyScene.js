@@ -25,6 +25,7 @@ class MyScene extends CGFscene {
         this.prism = new MyPrism(this, 8);
         this.cylinder = new MyCylinder(this, 8);
         this.tree = new MyTree(this, 2, 0.8, 3, 1.5);
+        this.treeGroupPatch = new MyTreeGroupPatch(this);
         this.treeRowPatch = new MyTreeRowPatch(this);
 
         //Objects connected to MyInterface
@@ -102,11 +103,10 @@ class MyScene extends CGFscene {
 
 
         this.pushMatrix();
-        //this.voxelHill.display();
-        //this.tree.display();
+        this.treeRowPatch.display()
         this.popMatrix();
 
-        this.treeRowPatch.display();
+        //this.treeGroupPatch.display();
 
         //this.prism.display();
 
