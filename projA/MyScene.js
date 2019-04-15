@@ -36,7 +36,18 @@ class MyScene extends CGFscene {
         this.voxelHill1 = new MyVoxelHill(this, 8);
         this.voxelHill2 = new MyVoxelHill(this, 5);
 
+        this.planTexCoords = [
+            0,10,
+            10,10,
+            0,0,
+            10,0
+        ]
+
+        this.plan.updateTexCoords(this.planTexCoords);
+
         //Objects connected to MyInterface
+
+        this.textureMode = true;
 
         this.lightAndSkyboxMode = {
             'Day': 0,
@@ -46,34 +57,71 @@ class MyScene extends CGFscene {
         this.selectedMode = 0;
 
 
-        //------- Cube stuff
-        this.texture5 = new CGFtexture(this, 'images/twee.jpg');
-        this.texture6 = new CGFtexture(this, 'images/mineTop.png');
-        this.texture7 = new CGFtexture(this, 'images/mineBottom.png');
+        this.barkTexture = new CGFtexture(this, 'images/twee.jpg');
+        this.treetopTexture = new CGFtexture(this, 'images/tweetop.jpg');
+        this.groundTexture = new CGFtexture(this, 'images/grass.jpg');
+        this.roofTexture = new CGFtexture(this, 'images/roof.jpg');
+        this.pillarTexture = new CGFtexture(this, 'images/pillarMetal.png');
+        this.wallTexture = new CGFtexture(this, 'images/wall.jpg');
+        this.doorTexture = new CGFtexture(this, 'images/door.jpg');
+        this.windowTexture = new CGFtexture(this, 'images/window2.jpg');
 
-        // Mine side
-        this.mine_side = new CGFappearance(this);
-        this.mine_side.setAmbient(0.1, 0.1, 0.1, 1);
-        this.mine_side.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.mine_side.setSpecular(0.1, 0.1, 0.1, 1);
-        this.mine_side.setShininess(10.0);
-        this.mine_side.setTexture(this.texture5);
+        this.barkMat = new CGFappearance(this);
+        this.barkMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.barkMat.setDiffuse(0.7, 0.7, 0.7, 1);
+        this.barkMat.setSpecular(0.1, 0.1, 0.1, 1);
+        this.barkMat.setShininess(10.0);
+        this.barkMat.setTexture(this.barkTexture);
 
-        // Mine top
-        this.mine_top = new CGFappearance(this);
-        this.mine_top.setAmbient(0.1, 0.1, 0.1, 1);
-        this.mine_top.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.mine_top.setSpecular(0.1, 0.1, 0.1, 1);
-        this.mine_top.setShininess(10.0);
-        this.mine_top.setTexture(this.texture6);
+        this.treetopMat = new CGFappearance(this);
+        this.treetopMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.treetopMat.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.treetopMat.setSpecular(0.3, 0.3, 0.3, 1);
+        this.treetopMat.setShininess(10.0);
+        this.treetopMat.setTexture(this.treetopTexture);
 
-        // Mine bottom
-        this.mine_bottom = new CGFappearance(this);
-        this.mine_bottom.setAmbient(0.1, 0.1, 0.1, 1);
-        this.mine_bottom.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.mine_bottom.setSpecular(0.1, 0.1, 0.1, 1);
-        this.mine_bottom.setShininess(10.0);
-        this.mine_bottom.setTexture(this.texture7);
+        this.groundMat = new CGFappearance(this);
+        this.groundMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.groundMat.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.groundMat.setSpecular(0.1, 0.1, 0.1, 1);
+        this.groundMat.setShininess(10.0);
+        this.groundMat.setTexture(this.groundTexture);
+        this.groundMat.setTextureWrap('REPEAT','REPEAT');
+
+        this.roofMat = new CGFappearance(this);
+        this.roofMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.roofMat.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.roofMat.setSpecular(0, 0, 0, 1);
+        this.roofMat.setShininess(10.0);
+        this.roofMat.setTexture(this.roofTexture);
+
+        this.pillarMat = new CGFappearance(this);
+        this.pillarMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.pillarMat.setDiffuse(0.3, 0.3, 0.3, 1);
+        this.pillarMat.setSpecular(0.9, 0.9, 0.9, 1);
+        this.pillarMat.setShininess(10.0);
+        this.pillarMat.setTexture(this.pillarTexture);
+
+        this.wallMat = new CGFappearance(this);
+        this.wallMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.wallMat.setDiffuse(1, 1, 1, 1);
+        this.wallMat.setSpecular(0, 0, 0, 1);
+        this.wallMat.setShininess(10.0);
+        this.wallMat.setTexture(this.wallTexture);
+
+        this.doorMat = new CGFappearance(this);
+        this.doorMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.doorMat.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.doorMat.setSpecular(0.3, 0.3, 0.3, 1);
+        this.doorMat.setShininess(10.0);
+        this.doorMat.setTexture(this.doorTexture);
+
+        this.windowMat = new CGFappearance(this);
+        this.windowMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.windowMat.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.windowMat.setSpecular(0.3, 0.3, 0.3, 1);
+        this.windowMat.setShininess(10.0);
+        this.windowMat.setTexture(this.windowTexture);
 
 
         this.skybox_day = new CGFtexture(this, 'images/cloudtop_skybox.png');
@@ -104,6 +152,11 @@ class MyScene extends CGFscene {
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
+    }
+
+    updateTextureMode() {
+        this.enableTextures(this.textureMode);
+
     }
 
 
@@ -147,7 +200,6 @@ class MyScene extends CGFscene {
         this.skyboxMat.apply();
         this.scale(40, 40, 40);
         this.skybox.display();
-
         this.popMatrix();
 
         this.pushMatrix();
@@ -158,6 +210,7 @@ class MyScene extends CGFscene {
         this.pushMatrix();
         this.scale(40, 40, 40);
         this.rotate(-Math.PI / 2, 1, 0, 0);
+        this.groundMat.apply();
         this.plan.display();
         this.popMatrix();
 
