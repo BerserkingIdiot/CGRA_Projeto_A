@@ -28,6 +28,7 @@ class MyScene extends CGFscene {
         this.house = new MyHouse(this);
         this.skybox = new MySkyBoxCube(this);
         this.tree = new MyTree(this, 2, 0.8, 3, 1.5);
+        this.treeGroupPatch = new MyTreeGroupPatch(this);
         this.treeRowPatch = new MyTreeRowPatch(this);
 
         //Objects connected to MyInterface
@@ -183,12 +184,12 @@ class MyScene extends CGFscene {
         this.pushMatrix();
 
         this.skybox.display();
-
-        //this.voxelHill.display();
-        //this.tree.display();
+      
+        this.pushMatrix();
+        this.treeRowPatch.display()
         this.popMatrix();
 
-        this.treeRowPatch.display();
+        //this.treeGroupPatch.display();
 
         //this.prism.display();
         //this.voxelHill.display();
