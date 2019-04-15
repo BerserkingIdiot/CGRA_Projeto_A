@@ -26,7 +26,7 @@ class MyScene extends CGFscene {
         this.cylinder = new MyCylinder(this, 8);
         this.cube = new MyUnitCubeQuad(this);
         this.house = new MyHouse(this);
-        this.skybox = new MySkyBoxCube(this);
+        this.skybox = new MyCubeMap(this);
         this.tree = new MyTree(this, 2, 0.8, 3, 1.5);
         this.treeGroupPatch1 = new MyTreeGroupPatch(this);
         this.treeGroupPatch2 = new MyTreeGroupPatch(this);
@@ -75,43 +75,20 @@ class MyScene extends CGFscene {
         this.mine_bottom.setShininess(10.0);
         this.mine_bottom.setTexture(this.texture7);
 
-        this.skybox_day_up = new CGFtexture(this, 'images/cloudtop_up.png');
-        this.skybox_day_ft = new CGFtexture(this, 'images/cloudtop_ft.png');
-        this.skybox_day_rt = new CGFtexture(this, 'images/cloudtop_rt.png');
-        this.skybox_day_lf = new CGFtexture(this, 'images/cloudtop_lf.png');
-        this.skybox_day_bk = new CGFtexture(this, 'images/cloudtop_bk.png');
-        this.skybox_day_dn = new CGFtexture(this, 'images/cloudtop_dn.png');
 
-        this.skybox_night_up = new CGFtexture(this, 'images/nightsky_up.png');
-        this.skybox_night_ft = new CGFtexture(this, 'images/nightsky_ft.png');
-        this.skybox_night_rt = new CGFtexture(this, 'images/nightsky_rt.png');
-        this.skybox_night_lf = new CGFtexture(this, 'images/nightsky_lf.png');
-        this.skybox_night_bk = new CGFtexture(this, 'images/nightsky_bk.png');
-        this.skybox_night_dn = new CGFtexture(this, 'images/nightsky_dn.png');
+        this.skybox_day = new CGFtexture(this, 'images/cloudtop_skybox.png');
+        this.skybox_night = new CGFtexture(this, 'images/nightsky_skybox.png');
 
-        this.skybox_mat_up = new CGFappearance(this);
-        this.initSkyboxMat(this.skybox_mat_up);
-        this.skybox_mat_up.setTexture(this.skybox_day_up);
+        this.skyboxMat = new CGFappearance(this);
+        this.skyboxMat.setAmbient(1, 1, 1, 1);
+        this.skyboxMat.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.skyboxMat.setSpecular(0.1, 0.1, 0.1, 1);
+        this.skyboxMat.setShininess(10.0);
+        this.skyboxMat.setTexture(this.skybox_day);
 
-        this.skybox_mat_ft = new CGFappearance(this);
-        this.initSkyboxMat(this.skybox_mat_ft);
-        this.skybox_mat_ft.setTexture(this.skybox_day_ft);
 
-        this.skybox_mat_rt = new CGFappearance(this);
-        this.initSkyboxMat(this.skybox_mat_rt);
-        this.skybox_mat_rt.setTexture(this.skybox_day_rt);
+        
 
-        this.skybox_mat_lf = new CGFappearance(this);
-        this.initSkyboxMat(this.skybox_mat_lf);
-        this.skybox_mat_lf.setTexture(this.skybox_day_lf);
-
-        this.skybox_mat_bk = new CGFappearance(this);
-        this.initSkyboxMat(this.skybox_mat_bk);
-        this.skybox_mat_bk.setTexture(this.skybox_day_bk);
-
-        this.skybox_mat_dn = new CGFappearance(this);
-        this.initSkyboxMat(this.skybox_mat_dn);
-        this.skybox_mat_dn.setTexture(this.skybox_day_dn);
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -129,37 +106,18 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
 
-    initSkyboxMat(mat) {
-        mat.setAmbient(1, 1, 1, 1);
-        mat.setDiffuse(0.9, 0.9, 0.9, 1);
-        mat.setSpecular(0.1, 0.1, 0.1, 1);
-        mat.setShininess(10.0);
-    }
 
     updateSkybox() {
-        if (this.selectedMode == 0) {
-            this.skybox_mat_up.setTexture(this.skybox_day_up);
-            this.skybox_mat_ft.setTexture(this.skybox_day_ft);
-            this.skybox_mat_rt.setTexture(this.skybox_day_rt);
-            this.skybox_mat_lf.setTexture(this.skybox_day_lf);
-            this.skybox_mat_bk.setTexture(this.skybox_day_bk);
-            this.skybox_mat_dn.setTexture(this.skybox_day_dn);
+        if(this.selectedMode == 0){
+            this.skyboxMat.setTexture(this.skybox_day);
             //set light sun
-        } else if (this.selectedMode == 1) {
-            this.skybox_mat_up.setTexture(this.skybox_night_up);
-            this.skybox_mat_ft.setTexture(this.skybox_night_ft);
-            this.skybox_mat_rt.setTexture(this.skybox_night_rt);
-            this.skybox_mat_lf.setTexture(this.skybox_night_lf);
-            this.skybox_mat_bk.setTexture(this.skybox_night_bk);
-            this.skybox_mat_dn.setTexture(this.skybox_night_dn);
+        }
+        else if(this.selectedMode == 1){
+            this.skyboxMat.setTexture(this.skybox_night);
             //set light moon
-        } else if (this.selectedMode == 2) {
-            this.skybox_mat_up.setTexture(this.skybox_night_up);
-            this.skybox_mat_ft.setTexture(this.skybox_night_ft);
-            this.skybox_mat_rt.setTexture(this.skybox_night_rt);
-            this.skybox_mat_lf.setTexture(this.skybox_night_lf);
-            this.skybox_mat_bk.setTexture(this.skybox_night_bk);
-            this.skybox_mat_dn.setTexture(this.skybox_night_dn);
+        }
+        else if(this.selectedMode == 2){
+            this.skyboxMat.setTexture(this.skybox_night);
             //set light fire
         }
     }
@@ -184,9 +142,12 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
+
         this.pushMatrix();
-        this.scale(4, 4, 4);
+        this.skyboxMat.apply();
+        this.scale(40, 40, 40);
         this.skybox.display();
+
         this.popMatrix();
 
         this.pushMatrix();
