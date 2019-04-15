@@ -1,7 +1,7 @@
 /**
-* MyScene
-* @constructor
-*/
+ * MyScene
+ * @constructor
+ */
 class MyScene extends CGFscene {
     constructor() {
         super();
@@ -33,23 +33,24 @@ class MyScene extends CGFscene {
         this.treeRowPatch1 = new MyTreeRowPatch(this);
         this.treeRowPatch2 = new MyTreeRowPatch(this);
         this.plan = new MyQuad(this);
+        this.voxelHill1 = new MyVoxelHill(this, 8);
+        this.voxelHill2 = new MyVoxelHill(this, 5);
 
         //Objects connected to MyInterface
 
-        this.lightAndSkyboxMode = {'Day' : 0, 'MoonNight' : 1, 'FireNight' : 2};
+        this.lightAndSkyboxMode = {
+            'Day': 0,
+            'MoonNight': 1,
+            'FireNight': 2
+        };
         this.selectedMode = 0;
 
 
         //------- Cube stuff
-
-        this.voxelHill = new MyVoxelHill(this, 8);
-
         this.texture5 = new CGFtexture(this, 'images/twee.jpg');
         this.texture6 = new CGFtexture(this, 'images/mineTop.png');
         this.texture7 = new CGFtexture(this, 'images/mineBottom.png');
- 
-         
- 
+
         // Mine side
         this.mine_side = new CGFappearance(this);
         this.mine_side.setAmbient(0.1, 0.1, 0.1, 1);
@@ -57,7 +58,7 @@ class MyScene extends CGFscene {
         this.mine_side.setSpecular(0.1, 0.1, 0.1, 1);
         this.mine_side.setShininess(10.0);
         this.mine_side.setTexture(this.texture5);
- 
+
         // Mine top
         this.mine_top = new CGFappearance(this);
         this.mine_top.setAmbient(0.1, 0.1, 0.1, 1);
@@ -65,7 +66,7 @@ class MyScene extends CGFscene {
         this.mine_top.setSpecular(0.1, 0.1, 0.1, 1);
         this.mine_top.setShininess(10.0);
         this.mine_top.setTexture(this.texture6);
- 
+
         // Mine bottom
         this.mine_bottom = new CGFappearance(this);
         this.mine_bottom.setAmbient(0.1, 0.1, 0.1, 1);
@@ -103,11 +104,11 @@ class MyScene extends CGFscene {
         this.skybox_mat_lf = new CGFappearance(this);
         this.initSkyboxMat(this.skybox_mat_lf);
         this.skybox_mat_lf.setTexture(this.skybox_day_lf);
-        
+
         this.skybox_mat_bk = new CGFappearance(this);
         this.initSkyboxMat(this.skybox_mat_bk);
         this.skybox_mat_bk.setTexture(this.skybox_day_bk);
-        
+
         this.skybox_mat_dn = new CGFappearance(this);
         this.initSkyboxMat(this.skybox_mat_dn);
         this.skybox_mat_dn.setTexture(this.skybox_day_dn);
@@ -136,7 +137,7 @@ class MyScene extends CGFscene {
     }
 
     updateSkybox() {
-        if(this.selectedMode == 0){
+        if (this.selectedMode == 0) {
             this.skybox_mat_up.setTexture(this.skybox_day_up);
             this.skybox_mat_ft.setTexture(this.skybox_day_ft);
             this.skybox_mat_rt.setTexture(this.skybox_day_rt);
@@ -144,8 +145,7 @@ class MyScene extends CGFscene {
             this.skybox_mat_bk.setTexture(this.skybox_day_bk);
             this.skybox_mat_dn.setTexture(this.skybox_day_dn);
             //set light sun
-        }
-        else if(this.selectedMode == 1){
+        } else if (this.selectedMode == 1) {
             this.skybox_mat_up.setTexture(this.skybox_night_up);
             this.skybox_mat_ft.setTexture(this.skybox_night_ft);
             this.skybox_mat_rt.setTexture(this.skybox_night_rt);
@@ -153,8 +153,7 @@ class MyScene extends CGFscene {
             this.skybox_mat_bk.setTexture(this.skybox_night_bk);
             this.skybox_mat_dn.setTexture(this.skybox_night_dn);
             //set light moon
-        }
-        else if(this.selectedMode == 2){
+        } else if (this.selectedMode == 2) {
             this.skybox_mat_up.setTexture(this.skybox_night_up);
             this.skybox_mat_ft.setTexture(this.skybox_night_ft);
             this.skybox_mat_rt.setTexture(this.skybox_night_rt);
@@ -184,52 +183,52 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
- 
+
         this.pushMatrix();
-        this.scale(4,4,4);
+        this.scale(4, 4, 4);
         this.skybox.display();
         this.popMatrix();
 
         this.pushMatrix();
-        this.scale(1.2,1.2,1.2);
+        this.scale(1.2, 1.2, 1.2);
         this.house.display();
         this.popMatrix();
 
         this.pushMatrix();
-        this.scale(40,40,40);
-        this.rotate(-Math.PI/2,1,0,0);
+        this.scale(40, 40, 40);
+        this.rotate(-Math.PI / 2, 1, 0, 0);
         this.plan.display();
         this.popMatrix();
 
         this.pushMatrix();
-        this.scale(2,2,2);
-        this.translate(-7,0,-7);
-        this.voxelHill.display();
+        this.scale(2, 2, 2);
+        this.translate(-7, 0, -7);
+        this.voxelHill1.display();
         this.popMatrix();
 
         this.pushMatrix();
-        this.scale(2.3,2.3,2.3);
-        this.translate(5,0,5);
-        this.voxelHill.display();
+        this.scale(2.3, 2.3, 2.3);
+        this.translate(5, 0, 5);
+        this.voxelHill2.display();
         this.popMatrix();
 
         this.pushMatrix();
-        this.translate(0,0,-20);
+        this.translate(0, 0, -20);
         this.treeRowPatch1.display();
         this.popMatrix();
 
         this.pushMatrix();
-        this.translate(0,0,-17);
+        this.translate(0, 0, -17);
         this.treeRowPatch2.display();
         this.popMatrix();
 
         this.pushMatrix();
-        this.translate(-15,0,0);
+        this.translate(-15, 0, 0);
         this.treeGroupPatch1.display();
         this.popMatrix();
 
         this.pushMatrix();
-        this.translate(-15,0,8);
+        this.translate(-15, 0, 8);
         this.treeGroupPatch2.display();
         this.popMatrix();
 
