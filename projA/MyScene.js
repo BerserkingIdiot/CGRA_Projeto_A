@@ -16,7 +16,7 @@ class MyScene extends CGFscene {
 
         this.gl.clearDepth(100.0);
         this.gl.enable(this.gl.DEPTH_TEST);
-        //this.gl.enable(this.gl.CULL_FACE);
+        this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
         this.enableTextures(true);
 
@@ -28,8 +28,11 @@ class MyScene extends CGFscene {
         this.house = new MyHouse(this);
         this.skybox = new MySkyBoxCube(this);
         this.tree = new MyTree(this, 2, 0.8, 3, 1.5);
-        this.treeGroupPatch = new MyTreeGroupPatch(this);
-        this.treeRowPatch = new MyTreeRowPatch(this);
+        this.treeGroupPatch1 = new MyTreeGroupPatch(this);
+        this.treeGroupPatch2 = new MyTreeGroupPatch(this);
+        this.treeRowPatch1 = new MyTreeRowPatch(this);
+        this.treeRowPatch2 = new MyTreeRowPatch(this);
+        this.plan = new MyQuad(this);
 
         //Objects connected to MyInterface
 
@@ -181,20 +184,54 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
+ 
         this.pushMatrix();
-
+        this.scale(4,4,4);
         this.skybox.display();
-      
-        this.pushMatrix();
-        this.treeRowPatch.display()
         this.popMatrix();
 
-        //this.treeGroupPatch.display();
-
-        //this.prism.display();
-        //this.voxelHill.display();
-        //this.tree.display();
+        this.pushMatrix();
+        this.scale(1.2,1.2,1.2);
         this.house.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.scale(40,40,40);
+        this.rotate(-Math.PI/2,1,0,0);
+        this.plan.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.scale(2,2,2);
+        this.translate(-7,0,-7);
+        this.voxelHill.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.scale(2.3,2.3,2.3);
+        this.translate(5,0,5);
+        this.voxelHill.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(0,0,-20);
+        this.treeRowPatch1.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(0,0,-17);
+        this.treeRowPatch2.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-15,0,0);
+        this.treeGroupPatch1.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-15,0,8);
+        this.treeGroupPatch2.display();
+        this.popMatrix();
 
         // ---- END Primitive drawing section
     }
