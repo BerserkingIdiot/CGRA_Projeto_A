@@ -16,6 +16,9 @@ class MyInterface extends CGFinterface {
         
         var obj = this;
 
+
+        this.gui.add(this.scene, 'selectedMode', this.scene.lightAndSkyboxMode).name('skybox mode').onChange(this.scene.updateSkybox.bind(this.scene));
+
         return true;
     }
 }
