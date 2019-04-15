@@ -1,7 +1,7 @@
 /**
-* MyScene
-* @constructor
-*/
+ * MyScene
+ * @constructor
+ */
 class MyScene extends CGFscene {
     constructor() {
         super();
@@ -28,25 +28,29 @@ class MyScene extends CGFscene {
         this.house = new MyHouse(this);
         this.skybox = new MyCubeMap(this);
         this.tree = new MyTree(this, 2, 0.8, 3, 1.5);
-        this.treeGroupPatch = new MyTreeGroupPatch(this);
-        this.treeRowPatch = new MyTreeRowPatch(this);
+        this.treeGroupPatch1 = new MyTreeGroupPatch(this);
+        this.treeGroupPatch2 = new MyTreeGroupPatch(this);
+        this.treeRowPatch1 = new MyTreeRowPatch(this);
+        this.treeRowPatch2 = new MyTreeRowPatch(this);
+        this.plan = new MyQuad(this);
+        this.voxelHill1 = new MyVoxelHill(this, 8);
+        this.voxelHill2 = new MyVoxelHill(this, 5);
 
         //Objects connected to MyInterface
 
-        this.lightAndSkyboxMode = {'Day' : 0, 'MoonNight' : 1, 'FireNight' : 2};
+        this.lightAndSkyboxMode = {
+            'Day': 0,
+            'MoonNight': 1,
+            'FireNight': 2
+        };
         this.selectedMode = 0;
 
 
         //------- Cube stuff
-
-        this.voxelHill = new MyVoxelHill(this, 8);
-
         this.texture5 = new CGFtexture(this, 'images/twee.jpg');
         this.texture6 = new CGFtexture(this, 'images/mineTop.png');
         this.texture7 = new CGFtexture(this, 'images/mineBottom.png');
- 
-         
- 
+
         // Mine side
         this.mine_side = new CGFappearance(this);
         this.mine_side.setAmbient(0.1, 0.1, 0.1, 1);
@@ -54,7 +58,7 @@ class MyScene extends CGFscene {
         this.mine_side.setSpecular(0.1, 0.1, 0.1, 1);
         this.mine_side.setShininess(10.0);
         this.mine_side.setTexture(this.texture5);
- 
+
         // Mine top
         this.mine_top = new CGFappearance(this);
         this.mine_top.setAmbient(0.1, 0.1, 0.1, 1);
@@ -62,7 +66,7 @@ class MyScene extends CGFscene {
         this.mine_top.setSpecular(0.1, 0.1, 0.1, 1);
         this.mine_top.setShininess(10.0);
         this.mine_top.setTexture(this.texture6);
- 
+
         // Mine bottom
         this.mine_bottom = new CGFappearance(this);
         this.mine_bottom.setAmbient(0.1, 0.1, 0.1, 1);
@@ -70,6 +74,7 @@ class MyScene extends CGFscene {
         this.mine_bottom.setSpecular(0.1, 0.1, 0.1, 1);
         this.mine_bottom.setShininess(10.0);
         this.mine_bottom.setTexture(this.texture7);
+
 
         this.skybox_day = new CGFtexture(this, 'images/cloudtop_skybox.png');
         this.skybox_night = new CGFtexture(this, 'images/nightsky_skybox.png');
@@ -83,6 +88,7 @@ class MyScene extends CGFscene {
 
 
         
+
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -135,25 +141,57 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
-        this.pushMatrix();
-        
-        this.skyboxMat.apply();
-        this.scale(15, 15, 15);
 
+
+        this.pushMatrix();
+        this.skyboxMat.apply();
+        this.scale(40, 40, 40);
         this.skybox.display();
 
         this.popMatrix();
-      
+
         this.pushMatrix();
-        this.treeRowPatch.display()
+        this.scale(1.2, 1.2, 1.2);
+        this.house.display();
         this.popMatrix();
 
-        //this.treeGroupPatch.display();
+        this.pushMatrix();
+        this.scale(40, 40, 40);
+        this.rotate(-Math.PI / 2, 1, 0, 0);
+        this.plan.display();
+        this.popMatrix();
 
-        //this.prism.display();
-        //this.voxelHill.display();
-        //this.tree.display();
-        this.house.display();
+        this.pushMatrix();
+        this.scale(2, 2, 2);
+        this.translate(-7, 0, -7);
+        this.voxelHill1.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.scale(2.3, 2.3, 2.3);
+        this.translate(5, 0, 5);
+        this.voxelHill2.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(0, 0, -20);
+        this.treeRowPatch1.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(0, 0, -17);
+        this.treeRowPatch2.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-15, 0, 0);
+        this.treeGroupPatch1.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-15, 0, 8);
+        this.treeGroupPatch2.display();
+        this.popMatrix();
 
         // ---- END Primitive drawing section
     }

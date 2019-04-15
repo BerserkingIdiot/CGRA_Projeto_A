@@ -33,8 +33,13 @@ serialInclude = function (a) {
 };
 serialInclude.l = new Array();
 
-serialInclude(['../lib/CGF.js','MyScene.js', 'MyInterface.js', 'MyDiamond.js',
-'MyTriangle.js', 'MyPrism.js', 'MyEquilateralTriangle.js',
+serialInclude(['../lib/CGF.js',
+               'MyScene.js', 
+               'MyInterface.js', 
+               'MyDiamond.js',
+               'MyTriangle.js', 
+               'MyPrism.js', 
+               'MyEquilateralTriangle.js',
                'MyScene.js', 
                'MyInterface.js',
                'MyUnitCubeQuad.js',
