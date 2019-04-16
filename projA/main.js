@@ -53,6 +53,7 @@ serialInclude(['../lib/CGF.js',
                'MyPyramid.js',
                'MyTreeRowPatch.js',
                'MyCubeMap.js',
+               'MyFireplace.js',
 
     main = function () {
         var app = new CGFapplication(document.body);
