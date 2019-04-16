@@ -16,7 +16,7 @@ class MyInterface extends CGFinterface {
         
         var obj = this;
 
-
+        this.gui.add(this.scene, 'textureMode').name('Textures').onChange(this.scene.updateTextureMode.bind(this.scene));
         this.gui.add(this.scene, 'selectedMode', this.scene.lightAndSkyboxMode).name('skybox mode').onChange(this.scene.updateSkybox.bind(this.scene));
 
         return true;

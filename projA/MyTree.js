@@ -15,12 +15,14 @@ class MyTree extends CGFobject {
     display(scene) {
         this.scene.pushMatrix();
         this.scene.scale(this.trunkRadius, this.trunkHeight, this.trunkRadius);
+        this.scene.barkMat.apply();
         this.cylinder.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
         this.scene.translate(0, this.trunkHeight, 0);
         this.scene.scale(this.treeTopRadius, this.treeTopHeight, this.treeTopRadius);
+        this.scene.treetopMat.apply();
         this.cone.display();
         this.scene.popMatrix();
     }
