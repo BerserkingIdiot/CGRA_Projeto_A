@@ -53,7 +53,8 @@ class MyScene extends CGFscene {
         this.lightAndSkyboxMode = {
             'Day': 0,
             'MoonNight': 1,
-            'FireNight': 2
+            'FireNight': 2,
+            'AllNight' : 3
         };
         this.selectedMode = 0;
 
@@ -66,6 +67,7 @@ class MyScene extends CGFscene {
         this.wallTexture = new CGFtexture(this, 'images/wall.jpg');
         this.doorTexture = new CGFtexture(this, 'images/door.jpg');
         this.windowTexture = new CGFtexture(this, 'images/window2.jpg');
+        this.lanternTexture = new CGFtexture(this, 'images/lantern.jpg');
 
         this.barkMat = new CGFappearance(this);
         this.barkMat.setAmbient(0.1, 0.1, 0.1, 1);
@@ -124,6 +126,13 @@ class MyScene extends CGFscene {
         this.windowMat.setShininess(10.0);
         this.windowMat.setTexture(this.windowTexture);
 
+        this.lanternMat = new CGFappearance(this);
+        this.lanternMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.lanternMat.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.lanternMat.setSpecular(0.1, 0.1, 0.1, 1);
+        this.lanternMat.setShininess(10.0);
+        this.lanternMat.setTexture(this.lanternTexture);
+
 
         this.skybox_day = new CGFtexture(this, 'images/cloudtop_skybox.png');
         this.skybox_night = new CGFtexture(this, 'images/nightsky_skybox.png');
@@ -140,10 +149,31 @@ class MyScene extends CGFscene {
 
     }
     initLights() {
-        this.lights[0].setPosition(15, 2, 5, 1);
-        this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
+        this.setGlobalAmbientLight(0.1, 0.1, 0.1, 1.0);
+
+        this.lights[0].setPosition(-20, 20, 20, 1);
+        this.lights[0].setDiffuse(1.0, 0.7, 0.5, 1.0);
+        this.lights[0].setSpecular(1.0, 0.7, 0.5, 1.0);
+        this.lights[0].setLinearAttenuation(0.001);
         this.lights[0].enable();
+        this.lights[0].setVisible(true);
         this.lights[0].update();
+
+        this.lights[1].setPosition(20, 20, -20, 1);
+        this.lights[1].setDiffuse(0.3, 0.3, 1.0, 1.0);
+        this.lights[1].setSpecular(0.3, 0.3, 1.0, 1.0);
+        this.lights[1].setLinearAttenuation(0.01);
+        this.lights[1].disable();
+        this.lights[1].setVisible(true);
+        this.lights[1].update();
+
+        this.lights[2].setPosition(0,0.25,6, 1);
+        this.lights[2].setDiffuse(1.0, 0.7, 0.4, 1.0);
+        this.lights[2].setSpecular(1.0, 0.7, 0.4, 1.0);
+        this.lights[2].setLinearAttenuation(0.05);
+        this.lights[2].disable();
+        this.lights[2].setVisible(true);
+        this.lights[2].update();
     }
     initCameras() {
         this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
@@ -165,14 +195,42 @@ class MyScene extends CGFscene {
         if(this.selectedMode == 0){
             this.skyboxMat.setTexture(this.skybox_day);
             //set light sun
+            this.lights[0].enable();
+            this.lights[1].disable();
+            this.lights[2].disable();
+            this.lights[0].update();
+            this.lights[1].update();
+            this.lights[2].update();
         }
         else if(this.selectedMode == 1){
             this.skyboxMat.setTexture(this.skybox_night);
             //set light moon
+            this.lights[0].disable();
+            this.lights[1].enable();
+            this.lights[2].disable();
+            this.lights[0].update();
+            this.lights[1].update();
+            this.lights[2].update();
         }
         else if(this.selectedMode == 2){
             this.skyboxMat.setTexture(this.skybox_night);
             //set light fire
+            this.lights[0].disable();
+            this.lights[1].disable();
+            this.lights[2].enable();
+            this.lights[0].update();
+            this.lights[1].update();
+            this.lights[2].update();
+        }
+        else if(this.selectedMode == 3){
+            this.skyboxMat.setTexture(this.skybox_night);
+            //set light moon and fire
+            this.lights[0].disable();
+            this.lights[1].enable();
+            this.lights[2].enable();
+            this.lights[0].update();
+            this.lights[1].update();
+            this.lights[2].update();
         }
     }
 
