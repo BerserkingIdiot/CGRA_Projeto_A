@@ -35,6 +35,7 @@ class MyScene extends CGFscene {
         this.plan = new MyQuad(this);
         this.voxelHill1 = new MyVoxelHill(this, 8);
         this.voxelHill2 = new MyVoxelHill(this, 5);
+        this.fireplace = new MyFireplace(this);
 
         this.planTexCoords = [
             0,10,
@@ -244,6 +245,10 @@ class MyScene extends CGFscene {
         this.pushMatrix();
         this.translate(-15, 0, 8);
         this.treeGroupPatch2.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.fireplace.display();
         this.popMatrix();
 
         // ---- END Primitive drawing section
