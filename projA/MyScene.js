@@ -151,7 +151,7 @@ class MyScene extends CGFscene {
     initLights() {
         this.setGlobalAmbientLight(0.1, 0.1, 0.1, 1.0);
 
-        this.lights[0].setPosition(-20, 20, 20, 1);
+        this.lights[0].setPosition(-50, 50, 50, 1);
         this.lights[0].setDiffuse(1.0, 0.7, 0.5, 1.0);
         this.lights[0].setSpecular(1.0, 0.7, 0.5, 1.0);
         this.lights[0].setLinearAttenuation(0.001);
@@ -159,7 +159,7 @@ class MyScene extends CGFscene {
         this.lights[0].setVisible(true);
         this.lights[0].update();
 
-        this.lights[1].setPosition(20, 20, -20, 1);
+        this.lights[1].setPosition(50, 50, -50, 1);
         this.lights[1].setDiffuse(0.3, 0.3, 1.0, 1.0);
         this.lights[1].setSpecular(0.3, 0.3, 1.0, 1.0);
         this.lights[1].setLinearAttenuation(0.01);
@@ -257,7 +257,7 @@ class MyScene extends CGFscene {
 
         this.pushMatrix();
         this.skyboxMat.apply();
-        this.scale(40, 40, 40);
+        this.scale(100, 100, 100);
         this.skybox.display();
         this.popMatrix();
 
@@ -267,7 +267,7 @@ class MyScene extends CGFscene {
         this.popMatrix();
 
         this.pushMatrix();
-        this.scale(40, 40, 40);
+        this.scale(100, 100, 100);
         this.rotate(-Math.PI / 2, 1, 0, 0);
         this.groundMat.apply();
         this.plan.display();
